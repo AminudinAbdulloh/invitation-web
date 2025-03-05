@@ -3,7 +3,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const guestName = urlParams.get("to");
     const guest = document.getElementById("guest-name");
-    guest.innerText = guestName;
+    if(guestName) {
+        guest.innerText = guestName;
+    } else {
+        guest.innerText = "-";
+    }
 
     // Tombol Buka Undangan
     const body = document.getElementById("body");

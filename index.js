@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // Nama Tamu Undangan
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestName = urlParams.get("to");
+    const guest = document.getElementById("guest-name");
+    guest.innerText = guestName;
+
+    // Tombol Buka Undangan
     const body = document.getElementById("body");
     body.classList.add("overflow-hidden");
 
@@ -12,4 +19,4 @@ document.addEventListener("DOMContentLoaded", function () {
         body.classList.remove("overflow-hidden");
         nextPage.classList.remove("hidden");
     });
-})
+});

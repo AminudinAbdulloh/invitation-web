@@ -21,10 +21,12 @@
 
 <body id="body" class="flex items-center justify-center min-h-screen">
     <!-- Halaman Buka Undangan -->
-    <div id="open-page" class="max-w-[425px] w-full absolute z-9999">
+    <div
+        id="open-page"
+        class="max-w-full w-full h-full absolute z-9999 min-h-screen bg-cover bg-bottom bg-no-repeat"
+        style="background-image: url('../public/assets/jawir-background-123.jpg');"
+    >
         <div>
-            <img class="w-full h-auto max-h-screen object-cover" src="../public/assets/jawir-background-123.jpg" alt="">
-
             <div class="absolute inset-0 flex justify-between overflow-hidden">
                 <div class="relative w-full animate-fade-right animate-duration-1000 animate-delay-500">
                     <img src="../public/assets/orn-2-min.png" alt=""
@@ -53,16 +55,18 @@
                 </div>
             </div>
 
-            <div class="animate-fade-up absolute inset-0 flex flex-col items-center justify-between pt-25 pb-20">
+            <div class="animate-fade-up absolute inset-0 flex flex-col items-center justify-between pt-25 pb-20 sm:pb-50">
                 <div class="w-full inset-0 flex flex-col items-center justify-center gap-5">
                     <span class="font-lora font-bold text-black text-xs">THE WEDDING OF</span>
                     <span class="font-great font-bold text-[#521111] text-5xl">Tiara & Jalu</span>
                 </div>
                 <div class="w-full inset-0 flex flex-col items-center justify-center gap-5">
-                    <span class="font-lora font-bold text-xs">Kepada Yth:</span>
+                    <span class="font-lora font-bold lg:text-xl">Kepada Yth:</span>
                     <span class="font-lora text-2xl text-[#521111] font-bold">Aminudin</span>
-                    <button id="open-btn"
-                        class="font-lora bg-[#ddc198] hover:bg-[#521111] text-white text-xs border-black border-1 rounded-3xl cursor-pointer py-2 px-4">
+                    <button
+                        id="open-btn"
+                        class="font-lora bg-[#ddc198] hover:bg-[#521111] text-white text-xs border-black border-1 rounded-3xl cursor-pointer py-2 px-4"
+                    >
                         <i class="fa-solid fa-envelope-open-text"></i> Buka Undangan
                     </button>
                 </div>

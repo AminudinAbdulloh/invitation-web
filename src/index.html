@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/111bcb4d15.js" crossorigin="anonymous"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./output.css">
+    <title>Vite App</title>
+</head>
+
+<body id="body" class="flex items-center justify-center min-h-screen">
+    <!-- Halaman Buka Undangan -->
+    <div id="open-page" class="max-w-[425px] w-full absolute z-9999">
+        <div>
+            <img class="w-full h-auto max-h-screen object-cover" src="../public/assets/jawir-background-123.jpg" alt="">
+
+            <div class="absolute inset-0 flex justify-between overflow-hidden">
+                <div class="relative w-full animate-fade-right animate-duration-1000 animate-delay-500">
+                    <img src="../public/assets/orn-2-min.png" alt=""
+                        class="absolute w-25 bottom-25 -left-10 transform scale-x-[-1] animate-wiggle-more animate-infinite animate-duration-[11000ms] animate-ease-in-out">
+                    <img src="../public/assets/wayang1.png" alt=""
+                        class="absolute bottom-15 -left-15 animate-wiggle animate-infinite animate-reverse animate-duration-[3000ms] animate-ease-in-out">
+                    <img src="../public/assets/orn-37-min.png" alt="" class="absolute transform scale-x-[-1] -bottom-5">
+                    <img src="../public/assets/orn-28-min.png" alt="" class="absolute w-30 bottom-0 left-8">
+                    <img src="../public/assets/orn-3-min.png" alt=""
+                        class="absolute w-25 -bottom-10 -left-8 animate-wiggle animate-infinite animate-duration-[4000ms] animate-ease-in-out animate-normal animate-fill-both">
+                    <img src="../public/assets/orn-8-min.png" alt=""
+                        class="absolute w-30 transform scale-x-[-1] -bottom-5 -left-10">
+                </div>
+
+                <div class="relative w-full animate-fade-left animate-duration-1000 animate-delay-500">
+                    <img src="../public/assets/orn-2-min.png" alt=""
+                        class="absolute w-25 bottom-25 -right-10 animate-wiggle-more animate-infinite animate-duration-[11000ms] animate-ease-in-out">
+                    <img src="../public/assets/wayang1.png" alt=""
+                        class="absolute bottom-15 -right-15 transform scale-x-[-1] animate-wiggle animate-reverse animate-infinite animate-duration-[3000ms] animate-ease-in-out">
+                    <img src="../public/assets/orn-37-min.png" alt="" class="absolute -bottom-5">
+                    <img src="../public/assets/orn-28-min.png" alt=""
+                        class="absolute w-30 transform scale-x-[-1] bottom-0 right-8">
+                    <img src="../public/assets/orn-3-min.png" alt=""
+                        class="absolute transform scale-x-[-1] w-25 -bottom-10 -right-8 animate-wiggle animate-infinite animate-duration-[4000ms] animate-ease-in-out animate-normal animate-fill-both">
+                    <img src="../public/assets/orn-8-min.png" alt="" class="absolute w-30 -bottom-10 -right-2">
+                </div>
+            </div>
+
+            <div class="animate-fade-up absolute inset-0 flex flex-col items-center justify-between pt-25 pb-20">
+                <div class="w-full inset-0 flex flex-col items-center justify-center gap-5">
+                    <span class="font-lora font-bold text-black text-xs">THE WEDDING OF</span>
+                    <span class="font-great font-bold text-[#521111] text-5xl">Tiara & Jalu</span>
+                </div>
+                <div class="w-full inset-0 flex flex-col items-center justify-center gap-5">
+                    <span class="font-lora font-bold text-xs">Kepada Yth:</span>
+                    <span class="font-lora text-2xl text-[#521111] font-bold">Aminudin</span>
+                    <button id="open-btn"
+                        class="font-lora bg-[#ddc198] hover:bg-[#521111] text-white text-xs border-black border-1 rounded-3xl cursor-pointer py-2 px-4">
+                        <i class="fa-solid fa-envelope-open-text"></i> Buka Undangan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Halaman 1 -->
+    <div id="next-page" class="hidden max-w-[425px] w-full relative">
+        <video src="../public/assets/ASSET-FALLBACK-MOTION-JAVA-NEW.mp4" controls autoplay loop muted class="w-full">
+    </div>
+</body>
+
+<script src="js/index.js"></script>
+
+</html>

@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 100);
     });
 
-    // Tombol Buka Undangan
+    // Tombol Music Undangan
     musicTiaraButton.addEventListener("click", () => {
         toggleAudio(audioTiara, audioJalu, playTiaraIcon, pauseTiaraIcon, playJaluIcon, pauseJaluIcon);
     });
@@ -65,15 +65,31 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleAudio(audioJalu, audioTiara, playJaluIcon, pauseJaluIcon, playTiaraIcon, pauseTiaraIcon);
     });
 
+    // Count Down
+    let endTime = new Date("May 18, 2025 00:00:00").getTime();
+    startCountdown(endTime);
+
     // Animasi scroll
+    animatedScroll2(".title", [
+        "animate-fade-up",
+        "animate-duration-1500",
+        "animate-delay-100"
+    ]);
+    animatedScroll2(".description", [
+        "animate-fade-up",
+        "animate-duration-1500",
+        "animate-delay-200"
+    ]);
+    animatedScroll2(".detail", [
+        "animate-fade-up",
+        "animate-duration-1500",
+        "animate-delay-200"
+    ]);
+    animatedScroll(".line", "spinner-grow", "1.8s", "ease", "0s", "1");
+    animatedScroll(".button", "spinner-grow", "1.8s", "ease", "0s", "1");
         // 1. Animasi Ornamen Quote
             // Atas
             animatedScroll(".orn-18-quote", "slide-in-up", "2s", "ease", "0s", "1");
-            animatedScroll2(".quote-title", [
-                "animate-fade-up",
-                "animate-duration-1500",
-                "animate-delay-100"
-            ]);
             // Ornamen Kiri
             animatedScroll(".orn-39-quote-left", "slide-in-down", "1.8s", "ease", "0s", "1", "goyang");
             animatedScroll(".orn-3-quote-left", "spinner-grow", "1.8s", "ease", "0s", "1", "goyang");
@@ -84,21 +100,6 @@ document.addEventListener("DOMContentLoaded", function () {
             animatedScroll(".orn-22-quote-right", "spinner-grow", "1.8s", "ease", "0s", "1");
 
         // 2. Animasi Ornamen Couple
-        animatedScroll2(".couple-title", [
-            "animate-fade-down",
-            "animate-duration-1500",
-            "animate-delay-100"
-        ]);
-        animatedScroll2(".couple-description", [
-            "animate-fade-up",
-            "animate-duration-1500",
-            "animate-delay-200"
-        ]);
-        animatedScroll2(".couple-detail", [
-            "animate-fade-up",
-            "animate-duration-1500",
-            "animate-delay-200"
-        ]);
             // Ornamen Kiri
             animatedScroll(".orn-couple-frame", "spinner-grow", "1.5s", "ease", "0s", "1");
             animatedScroll(".orn-2-couple-left", "slide-in-right", "2s", "ease", "0s", "1", "goyang");
@@ -115,6 +116,20 @@ document.addEventListener("DOMContentLoaded", function () {
             animatedScroll(".orn-11-couple-right", "slide-in-down", "2s", "ease", "0s", "1");
             animatedScroll(".orn-6-couple-right", "slide-in-down", "2s", "ease", "0s", "1");
             animatedScroll(".orn-4-couple-right", "fade-in-top-right", "2s", "ease", "0s", "1", "goyang");
+
+        // 3. Animasi Ornamen Footer
+            // Ornamen Kiri
+            animatedScroll(".orn-3-quote-left", "spinner-grow", "1.8s", "ease", "0s", "1", "goyang");
+            // Ornamen Kanan
+            animatedScroll(".orn-3-quote-right", "spinner-grow", "1.8s", "ease", "0s", "1", "goyang");
+            // Other
+            animatedScroll(".orn-footer", "spinner-grow", "1.8s", "ease", "0s", "1");
+
+        // 4. Animasi Countdown
+        animatedScroll(".countdown-item-day", "slide-in-down", "1.5s", "ease", "0s", "1");
+        animatedScroll(".countdown-item-hour", "slide-in-up", "1.5s", "ease", "0s", "1");
+        animatedScroll(".countdown-item-minute", "slide-in-down", "1.5s", "ease", "0s", "1");
+        animatedScroll(".countdown-item-second", "slide-in-up", "1.5s", "ease", "0s", "1");
 });
 
 function smoothScrollTo(start, end, duration, callback) {
@@ -202,4 +217,34 @@ function animatedScroll2(selector, animations = [], threshold = 0.2) {
     }, { threshold });
 
     elements.forEach(element => observer.observe(element));
+}
+
+// Fungsi Count Down
+function startCountdown(targetDate) {
+    function updateCountdown() {
+        let now = new Date().getTime();
+        let timeDiff = targetDate - now;
+
+        if (timeDiff <= 0) {
+            document.getElementById("day").innerHTML = "00";
+            document.getElementById("hour").innerHTML = "00";
+            document.getElementById("minute").innerHTML = "00";
+            document.getElementById("second").innerHTML = "00";
+            clearInterval(timer);
+            return;
+        }
+
+        let days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // Jam
+        let minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
+        let seconds = Math.floor((timeDiff / 1000) % 60);
+
+        document.getElementById("day").innerHTML = String(days).padStart(2, '0');
+        document.getElementById("hour").innerHTML = String(hours).padStart(2, '0'); // Menampilkan jam
+        document.getElementById("minute").innerHTML = String(minutes).padStart(2, '0');
+        document.getElementById("second").innerHTML = String(seconds).padStart(2, '0');
+    }
+
+    let timer = setInterval(updateCountdown, 1000);
+    updateCountdown(); // Menjalankan langsung saat halaman dimuat
 }

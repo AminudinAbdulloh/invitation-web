@@ -108,7 +108,7 @@
     </div>
 
     <!-- Main Content -->
-    <section id="next-page" class="flex flex-col items-center w-full h-screen">
+    <section id="next-page" class="flex flex-col items-center w-full h-screen overflow-x-hidden">
         <!-- Large Background -->
         <div id="large-background" class="lg:block fixed -z-1 animate-fade animate-duration-8000 w-screen h-screen object-cover">
             <div class="absolute inset-0 w-full h-full overflow-hidden">
@@ -178,13 +178,13 @@
                     <div class="quote-content w-full flex flex-col justify-center items-center">
                         <div class="quote-body w-full flex flex-col justify-center items-center">
                             <div class="relative w-full flex flex-col items-center gap-3">
-                                <span class="quote-title font-bold opacity-0 font-great text-4xl md:text-6xl lg:text-4xl text-[var(--primary-color)]">Quote</span>
+                                <span class="title font-bold opacity-0 font-great text-4xl md:text-6xl lg:text-4xl text-[var(--primary-color)]">Quote</span>
                                 <div class="quote-containier w-[70%] h-75 relative z-1">
                                     <div class="flex flex-col gap-2 p-3 rounded-2xl bg-[var(--tertiary-color)]">
-                                        <p class="quote font-lora text-sm md:text-2xl lg:text-sm text-center text-[var(--quaternary-color)]">
+                                        <p class="description font-lora text-sm md:text-2xl lg:text-sm text-center text-[var(--quaternary-color)]">
                                             “Semoga Allah rekatkan keberkahan padamu (di kala senang), dan semoga Allah rekatkan keberkahan kalian berdua (di kala susah), dan semoga Allah selalu menghimpun kalian berdua dalam kebaikan.”
                                         </p>
-                                        <p class="quoter font-lora font-bold text-sm md:text-2xl lg:text-sm text-center text-[var(--quaternary-color)]">
+                                        <p class="detail font-lora font-bold text-sm md:text-2xl lg:text-sm text-center text-[var(--quaternary-color)]">
                                             (Doa Nabi Muhammad SAW saat pernikahan Fatimah Az-Zahra dengan Ali bin Abi Thalib)
                                         </p>
                                     </div>
@@ -214,9 +214,9 @@
 
                 <!-- Couple -->
                 <section class="couple-wrap w-full flex flex-col justify-center items-center">
-                    <div class="couple-head font-bold w-full px-5 flex flex-col justify-center items-center gap-2 md:mb-10 lg:mb-0">
-                        <span class="couple-title opacity-0 font-great text-4xl md:text-6xl lg:text-4xl text-[var(--primary-color)]">Mempelai</span>
-                        <p class="couple-description opacity-0 font-lora text-sm md:text-2xl lg:text-sm text-center text-[var(--quaternary-color)]">
+                    <div class="couple-head w-full px-5 flex flex-col justify-center items-center gap-2 md:mb-10 lg:mb-0">
+                        <span class="title opacity-0 font-great font-bold text-4xl md:text-6xl lg:text-4xl text-[var(--primary-color)]">Mempelai</span>
+                        <p class="description opacity-0 font-lora text-sm md:text-2xl lg:text-sm text-center text-[var(--quaternary-color)]">
                             Dengan memohon rahmat & Ridho Allah SWT, kami bermaksud menyelenggarakan acara pernikahan putra-putri kami:
                         </p>
                     </div>
@@ -260,13 +260,13 @@
                                         class="orn-4-couple-right opacity-0 absolute transform scale-x-[-1] rotate-50 w-[17%] right-4 -top-23 md:right-15 md:-top-43 lg:right-10 lg:-top-23">
                                 </div>
                             </div>
-                            <div class="couple-detail-container flex flex-col justify-center items-center mt-5">
-                                <span class="couple-detail opacity-0 font-lora font-bold text-xl text-center text-[var(--primary-color)]">Ulul Albab Tiara, S.H.</span>
-                                <span class="couple-detail opacity-0 font-lora text-sm text-center text-[var(--quaternary-color)]">Putri Kedua dari</span>
-                                <span class="couple-detail opacity-0 font-lora text-sm text-center text-[var(--quaternary-color)]">Bapak Gintoro & Ibu Eny Rahayu</span>
+                            <div class="detail-container flex flex-col justify-center items-center mt-5">
+                                <span class="detail opacity-0 font-lora font-bold text-xl text-center text-[var(--primary-color)]">Ulul Albab Tiara, S.H.</span>
+                                <span class="detail opacity-0 font-lora text-sm text-center text-[var(--quaternary-color)]">Putri Kedua dari</span>
+                                <span class="detail opacity-0 font-lora text-sm text-center text-[var(--quaternary-color)]">Bapak Gintoro & Ibu Eny Rahayu</span>
                             </div>
                         </div>
-                        <span class="font-great text-9xl text-[var(--primary-color)] mt-10">&</span>
+                        <span class="line font-great text-9xl text-[var(--primary-color)] mt-10">&</span>
                         <div class="relative w-full flex flex-col items-center">
                             <div class="w-[70%]">
                                 <img src="./assets/mempelai/m-pria-border.png" alt=""
@@ -307,97 +307,173 @@
                                 </div>
                             </div>
                             <div class="couple-detail-container flex flex-col justify-center items-center mt-5">
-                                <span class="couple-detail opacity-0 font-lora font-bold text-xl text-center text-[var(--primary-color)]">Jalu Sri Nugraha, S.T.</span>
-                                <span class="couple-detail opacity-0 font-lora text-sm text-center text-[var(--quaternary-color)]">Putra kedua dari</span>
-                                <span class="couple-detail opacity-0 font-lora text-sm text-center text-[var(--quaternary-color)]">Bapak Bambang Nugroho & Ibu</span>
+                                <span class="detail opacity-0 font-lora font-bold text-xl text-center text-[var(--primary-color)]">Jalu Sri Nugraha, S.T.</span>
+                                <span class="detail opacity-0 font-lora text-sm text-center text-[var(--quaternary-color)]">Putra kedua dari</span>
+                                <span class="detail opacity-0 font-lora text-sm text-center text-[var(--quaternary-color)]">Bapak Bambang Nugroho & Ibu</span>
                             </div>
                         </div>
                     </div>
                 </section>
             </section>
 
+            <!-- Footer -->
             <div class="relative w-full">
                 <img src="./assets/elements/orn-25-min.png" alt=""
-                    class="absolute w-[40%] -top-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    class="orn-footer absolute w-[40%] -top-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <div>
                     <img src="./assets/elements/orn-3-min.png" alt=""
-                        class="absolute transform scale-x-[-1] w-[20%] -left-2 -top-25">
+                        class="orn-3-quote-left absolute transform scale-x-[-1] w-[20%] -left-2 -top-25 md:-top-50 lg:-top-25">
                     <img src="./assets/elements/orn-14-min.png" alt=""
-                        class="absolute w-[20%] left-12 -top-10">
+                        class="orn-footer absolute w-[20%] left-12 -top-10 md:w-[15%] md:left-35 lg:w-[20%] lg:left-12">
                     <img src="./assets/elements/orn-8-min.png" alt=""
-                        class="absolute transform scale-x-[-1] w-[25%] -left-2 -top-8">
+                        class="orn-footer absolute transform scale-x-[-1] w-[25%] -left-2 -top-8 md:-top-15 lg:-top-8">
                 </div>
                 <div>
                     <img src="./assets/elements/orn-3-min.png" alt=""
-                        class="absolute w-[20%] -right-2 -top-25">
+                        class="orn-3-quote-right absolute w-[20%] -right-2 -top-25 md:-top-50 lg:-top-25">
                     <img src="./assets/elements/orn-14-min.png" alt=""
-                        class="absolute transform scale-x-[-1] w-[20%] right-12 -top-10">
+                        class="orn-footer absolute transform scale-x-[-1] w-[20%] right-12 -top-10 md:w-[15%] md:right-35 lg:w-[20%] lg:right-12">
                     <img src="./assets/elements/orn-8-min.png" alt=""
-                        class="absolute w-[25%] -right-2 -top-8">
+                        class="orn-footer absolute w-[25%] -right-2 -top-8 md:-top-15 lg:-top-8">
                 </div>
             </div>
-            
+
+            <!-- Border -->
             <div class="relative w-full">
                 <img src="./assets/elements/orn-38-min.png" alt=""
-                    class="absolute transform scale-x-[-1] w-[25%] left-0 top-10">
+                    class="absolute transform scale-x-[-1] w-[25%] left-0 top-10 md:w-[20%] md:top-15 lg:w-[25%] lg:top-10">
                 <img src="./assets/elements/orn-38-min.png" alt=""
-                    class="absolute w-[25%] right-0 top-10">
+                    class="absolute w-[25%] right-0 top-10 md:w-[20%] md:top-15 lg:w-[25%] lg:top-10">
             </div>
 
             <!-- Acara Perniikahan -->
             <section class="lg:border-8 border-[var(--secondary-color)] lg:max-w-[425px]">
-                <section class="py-15 px-5">
-                    <div class="flex flex-col justify-center items-center border-3 border-[var(--primary-color)] rounded-2xl bg-[var(--tertiary-color-transparant)] px-2 py-5">
-                        <span class="event-title font-hurricane font-bold text-4xl md:text-6xl lg:text-4xl text-[var(--primary-color)]">Acara Pernikahan</span>
-                        <p class="event-description font-lora text-sm md:text-2xl lg:text-xl text-center text-[var(--quaternary-color)]">
+                <section class="py-15 px-5 md:py-25 md:px-10 lg:py-15 lg:px-5">
+                    <div class="flex flex-col justify-center items-center gap-2 border-3 border-[var(--primary-color)] rounded-2xl bg-[var(--tertiary-color-transparant)] px-2 py-5 md:px-4 md:py-10 lg:px-2 lg:py-5">
+                        <span class="title font-hurricane font-bold text-4xl md:text-6xl lg:text-4xl text-[var(--primary-color)]">Acara Pernikahan</span>
+                        <p class="description font-lora text-sm md:text-2xl lg:text-xl text-center text-[var(--quaternary-color)]">
                             Dengan memohon keridhaan Allah SWT dan segala kerendahan hati Bapak/Ibu/Sdr/i, izinkan kami menyelenggarakan pernikahan putra putri kami yang akan dilaksanakan pada:
                         </p>
-                        <div class="flex flex-col items-center">
-                            <span class="font-lora font-bold text-2xl text-[var(--primary-color)]">Minggu</span>
-                            <span class="font-lora text-xl text-[var(--primary-color)]">18 Mei 2024</span>
+                        <div class="flex flex-col items-center gap-0 md:gap-2 lg:gap-0">
+                            <span class="description font-lora font-bold text-2xl md:text-5xl lg:text-2xl text-[var(--primary-color)]">Minggu</span>
+                            <span class="detail font-lora text-xl md:text-3xl lg:text-xl text-[var(--primary-color)]">18 Mei 2024</span>
                         </div>
-                        <hr class="bg-[var(--primary-color)] h-[1px] w-[70%] mt-[1em] mb-[1em] border-1 border-[var(--primary-color)] rounded">
-                        <div class="flex flex-col items-center">
-                            <span class="font-lora font-bold text-2xl text-[var(--primary-color)]">Akad Nikah</span>
-                            <span class="font-lora text-xl text-[var(--primary-color)]">08.00-09.00 WIB</span>
+                        <hr class="line bg-[var(--primary-color)] h-[1px] w-[70%] mt-[1em] mb-[1em] border-1 border-[var(--primary-color)] rounded">
+                        <div class="flex flex-col items-center gap-0 md:gap-2 lg:gap-0">
+                            <span class="description font-lora font-bold text-2xl md:text-5xl lg:text-2xl text-[var(--primary-color)]">Akad Nikah</span>
+                            <span class="detail font-lora text-xl md:text-3xl lg:text-xl text-[var(--primary-color)]">08.00-09.00 WIB</span>
                         </div>
-                        <hr class="bg-[var(--primary-color)] h-[1px] w-[70%] mt-[1em] mb-[1em] border-1 border-[var(--primary-color)] rounded">
-                        <div class="flex flex-col items-center">
-                            <span class="font-lora font-bold text-2xl text-[var(--primary-color)]">Resepsi</span>
-                            <span class="font-lora text-xl text-[var(--primary-color)]">11.00-13.00 WIB</span>
+                        <hr class="line bg-[var(--primary-color)] h-[1px] w-[70%] mt-[1em] mb-[1em] border-1 border-[var(--primary-color)] rounded">
+                        <div class="flex flex-col items-center gap-0 md:gap-2 lg:gap-0">
+                            <span class="description font-lora font-bold text-2xl md:text-5xl lg:text-2xl text-[var(--primary-color)]">Resepsi</span>
+                            <span class="detail font-lora text-xl md:text-3xl lg:text-xl text-[var(--primary-color)]">11.00-13.00 WIB</span>
                         </div>
-                        <hr class="bg-[var(--primary-color)] h-[1px] w-[70%] mt-[1em] mb-[1em] border-1 border-[var(--primary-color)] rounded">
+                        <hr class="line bg-[var(--primary-color)] h-[1px] w-[70%] mt-[1em] mb-[1em] border-1 border-[var(--primary-color)] rounded">
+                        <div class="flex flex-col items-center gap-0 md:gap-2 lg:gap-0">
+                            <span class="description font-lora font-bold text-2xl md:text-5xl lg:text-2xl text-[var(--primary-color)]">Lokasi</span>
+                            <span class="detail font-lora text-xl md:text-3xl lg:text-xl text-[var(--primary-color)]">Gedung Kartini Sragen</span>
+                            <a
+                                href="https://maps.app.goo.gl/U8AcetXM5meL4NJC6" target="_blank" rel="noopener noreferrer"
+                                class="button w-full mt-2 flex items-center justify-center gap-2 font-lora bg-[var(--primary-color)] text-white text-sm border-black border-1 rounded-3xl cursor-pointer py-2 px-4
+                                md:text-4xl lg:text-xl
+                                active:scale-95 focus:bg-[var(--primary-color)]"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24" height="24" fill="currentColor">
+                                    <path d="M192 0C86 0 0 86 0 192c0 87 123 231 170 279a24 24 0 0 0 34 0c47-48 170-192 170-279C384 86 298 0 192 0Zm0 272a80 80 0 1 1 0-160 80 80 0 1 1 0 160Z"/>
+                                </svg> Buka Undangan
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Footer -->
+            <div class="relative w-full">
+                <img src="./assets/elements/orn-25-min.png" alt=""
+                    class="orn-footer absolute w-[40%] -top-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div>
+                    <img src="./assets/elements/orn-3-min.png" alt=""
+                        class="orn-3-quote-left absolute transform scale-x-[-1] w-[20%] -left-2 -top-25 md:-top-50 lg:-top-25">
+                    <img src="./assets/elements/orn-14-min.png" alt=""
+                        class="orn-footer absolute w-[20%] left-12 -top-10 md:w-[15%] md:left-35 lg:w-[20%] lg:left-12">
+                    <img src="./assets/elements/orn-8-min.png" alt=""
+                        class="orn-footer absolute transform scale-x-[-1] w-[25%] -left-2 -top-8 md:-top-15 lg:-top-8">
                 </div>
+                <div>
+                    <img src="./assets/elements/orn-3-min.png" alt=""
+                        class="orn-3-quote-right absolute w-[20%] -right-2 -top-25 md:-top-50 lg:-top-25">
+                    <img src="./assets/elements/orn-14-min.png" alt=""
+                        class="orn-footer absolute transform scale-x-[-1] w-[20%] right-12 -top-10 md:w-[15%] md:right-35 lg:w-[20%] lg:right-12">
+                    <img src="./assets/elements/orn-8-min.png" alt=""
+                        class="orn-footer absolute w-[25%] -right-2 -top-8 md:-top-15 lg:-top-8">
+                </div>
+            </div>
+
+            <section class="w-full lg:max-w-[425px] min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[var(--secondary-color)] py-5 md:py-30 lg:py-5">
+                <!-- Count Down -->
+                <section class="relative countdown-wrap w-full flex flex-col gap-20 md:gap-30 lg:gap-20 justify-center items-center py-4">
+                    <span class="title opacity-0 font-great font-bold text-4xl md:text-6xl lg:text-4xl text-[var(--primary-color)]">Hari Yang Ditunggu</span>
+                    <img src="./assets/elements/orn-35-min.png" alt=""
+                        class="absolute w-[65%] -left-30 -bottom-10 z-0 md:w-[45%] md:-bottom-15">
+                        <img src="./assets/elements/orn-35-min.png" alt=""
+                        class="absolute w-[65%] -right-30 -bottom-10 z-0 md:w-[45%] md:-bottom-15">
+                    <div class="relative w-[70vw] h-[82vw] md:w-[50vw] md:h-[62vw] lg:w-70 lg:h-82 flex flex-col justify-center items-center rounded-full bg-[var(--last-color)]">
+                        <!-- Container untuk frame ornamen -->
+                        <div class="absolute inset-0 flex justify-center items-center overflow-visible">
+                            <img src="./assets/elements/orn-frame-3-min.png" alt="Ornamental Frame"
+                                class="absolute w-full h-full object-contain transform scale-150">
+                            <div class="orn-couple relative w-full">
+                                <div>
+                                    <img src="./assets/elements/orn-4-min.png" alt=""
+                                        class="orn-4-couple-left opacity-0 absolute -rotate-30 w-[30%] -left-10 -bottom-40 md:left-15 md:-top-43 lg:left-10 lg:-top-23">
+                                    <img src="./assets/elements/orn-6-min.png" alt=""
+                                        class="orn-6-couple-left opacity-0 absolute transform scale-x-[-1] rotate-20 w-[25%] -left-10 -bottom-20 md:left-20 md:-top-60 lg:left-10 lg:-top-30">
+                                </div>
+                                <div>
+                                    <img src="./assets/elements/orn-4-min.png" alt=""
+                                        class="orn-4-couple-left opacity-0 absolute transform scale-x-[-1] rotate-30 w-[30%] -right-10 -bottom-40 md:left-15 md:-top-43 lg:left-10 lg:-top-23">
+                                    <img src="./assets/elements/orn-6-min.png" alt=""
+                                        class="orn-6-couple-left opacity-0 absolute -rotate-20 w-[25%] -right-10 -bottom-20 md:left-20 md:-top-60 lg:left-10 lg:-top-30">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Countdown centered -->
+                        <div id="countdown-container" class="relative z-10 max-w-[70%] flex justify-center items-center flex-wrap gap-5 bg-opacity-70 rounded-lg">
+                            <div class="countdown-item-day opacity-0 flex flex-col justify-center items-center">
+                                <span id="day" class="font-lora text-[var(--primary-color)] text-2xl font-bold">00</span>
+                                <span class="font-lora text-[var(--primary-color)] text-xl">Hari</span>
+                            </div>
+                            <div class="countdown-item-hour opacity-0 flex flex-col justify-center items-center">
+                                <span id="hour" class="font-lora text-[var(--primary-color)] text-2xl font-bold">00</span>
+                                <span class="font-lora text-[var(--primary-color)] text-xl">Jam</span>
+                            </div>
+                            <div class="countdown-item-minute opacity-0 flex flex-col justify-center items-center">
+                                <span id="minute" class="font-lora text-[var(--primary-color)] text-2xl font-bold">00</span>
+                                <span class="font-lora text-[var(--primary-color)] text-xl">Menit</span>
+                            </div>
+                            <div class="countdown-item-second opacity-0 flex flex-col justify-center items-center">
+                                <span id="second" class="font-lora text-[var(--primary-color)] text-2xl font-bold">00</span>
+                                <span class="font-lora text-[var(--primary-color)] text-xl">Detik</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <a
+                    href="https://www.google.com/calendar/render?action=TEMPLATE&text=Acara+Pernikahan+TIARA+%26+JALU&details=Acara+Pernikahan+TIARA+%26+JALU&location=Gedung+Kartini%2C+Sine%2C+Tengah%2C+Kec.+Sragen%2C+Kabupaten+Sragen%2C+Jawa+Tengah+57211%2C+Indonesia&dates=20250518T010000Z%2F20250518T060000Z"
+                    target="_blank" rel="noopener noreferrer"
+                    class="button w-[70%] mt-15 md:mt-25 lg:mt-15 flex items-center justify-center gap-2 font-lora bg-[var(--primary-color)] text-white text-sm text-center border-black border-1 rounded-3xl cursor-pointer py-2 px-4
+                    md:text-2xl lg:text-sm
+                    active:scale-95 focus:bg-[var(--primary-color)]"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 448 512" fill="white">
+                        <path d="M128 0c17.7 0 32 14.3 32 32l0 32 128 0 0-32c0-17.7 14.3-32 32-32s32 14.3 32 32l0 32 48 0c26.5 0 48 21.5 48 48l0 48L0 160l0-48C0 85.5 21.5 64 48 64l48 0 0-32c0-17.7 14.3-32 32-32zM0 192l448 0 0 272c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 192zm64 80l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm128 0l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zM64 400l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zm112 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16z"/>
+                    </svg> Tambahkan ke Kalender
+                </a>
             </section>
         </section>
+    </section>
 
-        <div class="relative w-full">
-            <img src="./assets/elements/orn-25-min.png" alt=""
-                class="absolute w-[40%] -top-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div>
-                <img src="./assets/elements/orn-3-min.png" alt=""
-                    class="absolute transform scale-x-[-1] w-[20%] -left-2 -top-25">
-                <img src="./assets/elements/orn-14-min.png" alt=""
-                    class="absolute w-[20%] left-12 -top-10">
-                <img src="./assets/elements/orn-8-min.png" alt=""
-                    class="absolute transform scale-x-[-1] w-[25%] -left-2 -top-8">
-            </div>
-            <div>
-                <img src="./assets/elements/orn-3-min.png" alt=""
-                    class="absolute w-[20%] -right-2 -top-25">
-                <img src="./assets/elements/orn-14-min.png" alt=""
-                    class="absolute transform scale-x-[-1] w-[20%] right-12 -top-10">
-                <img src="./assets/elements/orn-8-min.png" alt=""
-                    class="absolute w-[25%] -right-2 -top-8">
-            </div>
-        </div>
-
-        <!-- Count Down -->
-        <section class="w-full lg:max-w-[425px] min-h-screen flex flex-col gap-5 md:gap-30 lg:gap-5 pt-50 pb-20 md:pt-80 lg:pt-50 overflow-hidden bg-[var(--secondary-color)]">
-
-        </section>
-    </div>
-    
     <!-- Audio -->
     <audio id="audio-tiara" src="/assets/music/music-1.mp3" loop></audio>
     <audio id="audio-jalu" src="/assets/music/music-2.mp3" loop></audio>

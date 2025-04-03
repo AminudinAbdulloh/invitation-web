@@ -118,10 +118,6 @@ document.addEventListener("DOMContentLoaded", function () {
             animatedScroll(".orn-4-couple-right", "fade-in-top-right", "2s", "ease", "0s", "1", "goyang");
 
         // 3. Animasi Ornamen Footer
-            // Ornamen Kiri
-            animatedScroll(".orn-3-quote-left", "spinner-grow", "1.8s", "ease", "0s", "1", "goyang");
-            // Ornamen Kanan
-            animatedScroll(".orn-3-quote-right", "spinner-grow", "1.8s", "ease", "0s", "1", "goyang");
             // Other
             animatedScroll(".orn-footer", "spinner-grow", "1.8s", "ease", "0s", "1");
 
@@ -130,6 +126,8 @@ document.addEventListener("DOMContentLoaded", function () {
         animatedScroll(".countdown-item-hour", "slide-in-up", "1.5s", "ease", "0s", "1");
         animatedScroll(".countdown-item-minute", "slide-in-down", "1.5s", "ease", "0s", "1");
         animatedScroll(".countdown-item-second", "slide-in-up", "1.5s", "ease", "0s", "1");
+
+    showBackground("large-background", "block");
 });
 
 function smoothScrollTo(start, end, duration, callback) {
@@ -191,7 +189,7 @@ function animatedScroll(selector, enterAnimation, duration = "1s", timingFunctio
 
                         if (nextAnimation) {
                             requestAnimationFrame(() => {
-                                element.style.animation = `${nextAnimation} 3.5s ease-in-out infinite alternate`;
+                                element.style.animation = `${nextAnimation} 5s ease-in-out infinite alternate`;
                             });
                         }
 
@@ -247,4 +245,25 @@ function startCountdown(targetDate) {
 
     let timer = setInterval(updateCountdown, 1000);
     updateCountdown(); // Menjalankan langsung saat halaman dimuat
+}
+
+function showBackground(idTarget, position) {
+    // Dapatkan elemen target yang ingin ditampilkan
+    let target = document.getElementById(idTarget);
+    
+    // Buat elemen pemicu (Anda perlu menambahkan ini ke HTML Anda)
+    // Misalnya: <div id="trigger-for-background" class="h-screen"></div>
+    let trigger = document.getElementById("trigger-for-background");
+    
+    let observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                target.classList.remove("hidden");
+                target.classList.add(position);
+            }
+        });
+    });
+    
+    // Amati elemen pemicu, bukan target
+    observer.observe(trigger);
 }

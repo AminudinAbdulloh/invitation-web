@@ -110,7 +110,7 @@
     <!-- Main Content -->
     <section id="next-page" class="flex flex-col items-center w-full h-screen overflow-x-hidden">
         <!-- Large Background -->
-        <div id="large-background" class="lg:block fixed -z-1 animate-fade animate-duration-8000 w-screen h-screen object-cover">
+        <div id="large-background" class="hidden fixed -z-1 animate-fade animate-duration-8000 w-screen h-screen object-cover">
             <div class="absolute inset-0 w-full h-full overflow-hidden">
                 <img src="./assets/elements/bg-overlay-min.png" alt=""
                     class="absolute w-full h-full top-1/2 -translate-y-1/2 object-center scale-125 object-cover animate-jump animate-duration-10000">
@@ -317,7 +317,7 @@
             </section>
 
             <!-- Footer -->
-            <div class="relative w-full">
+            <div id="trigger-for-background" class="relative w-full">
                 <img src="./assets/elements/orn-25-min.png" alt=""
                     class="orn-footer absolute opacity-0 w-[40%] -top-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <div>
@@ -414,26 +414,34 @@
                 <section class="relative countdown-wrap w-full flex flex-col gap-20 md:gap-30 lg:gap-20 justify-center items-center py-4">
                     <span class="title opacity-0 font-great font-bold text-4xl md:text-6xl lg:text-4xl text-[var(--primary-color)]">Hari Yang Ditunggu</span>
                     <img src="./assets/elements/orn-35-min.png" alt=""
-                        class="absolute w-[65%] -left-30 -bottom-10 z-0 md:w-[45%] md:-bottom-15">
-                        <img src="./assets/elements/orn-35-min.png" alt=""
-                        class="absolute w-[65%] -right-30 -bottom-10 z-0 md:w-[45%] md:-bottom-15">
-                    <div class="relative w-[70vw] h-[82vw] md:w-[50vw] md:h-[62vw] lg:w-70 lg:h-82 flex flex-col justify-center items-center rounded-full bg-[var(--last-color)]">
+                        class="absolute w-[65%] -left-30 -bottom-10 z-0 md:w-[45%] md:-bottom-15 lg:w-[55%] lg:-bottom-10">
+                    <img src="./assets/elements/orn-35-min.png" alt=""
+                        class="absolute w-[65%] -right-30 -bottom-10 z-0 md:w-[45%] md:-bottom-15 lg:w-[55%] lg:-bottom-10">
+                    <div class="relative w-[70vw] h-[92vw] md:w-[50vw] md:h-[62vw] lg:w-70 lg:h-82 flex flex-col justify-center items-center rounded-full bg-[var(--last-color)]">
                         <!-- Container untuk frame ornamen -->
                         <div class="absolute inset-0 flex justify-center items-center overflow-visible">
                             <img src="./assets/elements/orn-frame-3-min.png" alt="Ornamental Frame"
-                                class="absolute w-full h-full object-contain transform scale-150">
+                                class="orn-couple-frame absolute opacity-0 w-full h-full object-contain transform scale-150">
                             <div class="orn-couple relative w-full">
                                 <div>
+                                    <img src="./assets/elements/orn-2-min.png" alt=""
+                                        class="orn-2-couple-left opacity-0 absolute transform scale-x-[-1] w-[35%] -left-5 -top-45 md:-top-80 lg:-top-45">
+                                    <img src="./assets/elements/orn-3-min.png" alt=""
+                                        class="orn-3-quote-left opacity-0 absolute w-[40%] -left-13 -bottom-13">
                                     <img src="./assets/elements/orn-4-min.png" alt=""
-                                        class="orn-4-couple-left opacity-0 absolute -rotate-30 w-[30%] -left-10 -bottom-40 md:left-15 md:-top-43 lg:left-10 lg:-top-23">
-                                    <img src="./assets/elements/orn-6-min.png" alt=""
-                                        class="orn-6-couple-left opacity-0 absolute transform scale-x-[-1] rotate-20 w-[25%] -left-10 -bottom-20 md:left-20 md:-top-60 lg:left-10 lg:-top-30">
+                                        class="orn-4-couple-left opacity-0 absolute -rotate-30 w-[30%] -left-10 -bottom-42 md:-bottom-75 lg:-bottom-55">
+                                    <img src="./assets/elements/orn-12-min.png" alt=""
+                                        class="orn-6-couple-left opacity-0 absolute transform scale-x-[-1] w-[35%] -left-12 -bottom-20 md:-bottom-40 lg:-bottom-30">
                                 </div>
                                 <div>
+                                    <img src="./assets/elements/orn-2-min.png" alt=""
+                                        class="orn-2-couple-right opacity-0 absolute w-[35%] -right-5 -top-45 md:-top-80 lg:-top-45">
+                                    <img src="./assets/elements/orn-3-min.png" alt=""
+                                        class="orn-3-quote-right opacity-0 absolute transform scale-x-[-1] w-[40%] -right-13 -bottom-13">
                                     <img src="./assets/elements/orn-4-min.png" alt=""
-                                        class="orn-4-couple-left opacity-0 absolute transform scale-x-[-1] rotate-30 w-[30%] -right-10 -bottom-40 md:left-15 md:-top-43 lg:left-10 lg:-top-23">
-                                    <img src="./assets/elements/orn-6-min.png" alt=""
-                                        class="orn-6-couple-left opacity-0 absolute -rotate-20 w-[25%] -right-10 -bottom-20 md:left-20 md:-top-60 lg:left-10 lg:-top-30">
+                                        class="orn-4-couple-right opacity-0 absolute transform scale-x-[-1] rotate-30 w-[30%] -right-10 -bottom-42 md:-bottom-75 lg:-bottom-55">
+                                    <img src="./assets/elements/orn-12-min.png" alt=""
+                                        class="orn-6-couple-right opacity-0 absolute w-[35%] -right-12 -bottom-20 md:-bottom-40 lg:-bottom-30">
                                 </div>
                             </div>
                         </div>
@@ -462,7 +470,7 @@
                 <a
                     href="https://www.google.com/calendar/render?action=TEMPLATE&text=Acara+Pernikahan+TIARA+%26+JALU&details=Acara+Pernikahan+TIARA+%26+JALU&location=Gedung+Kartini%2C+Sine%2C+Tengah%2C+Kec.+Sragen%2C+Kabupaten+Sragen%2C+Jawa+Tengah+57211%2C+Indonesia&dates=20250518T010000Z%2F20250518T060000Z"
                     target="_blank" rel="noopener noreferrer"
-                    class="button opacity-0 w-[70%] mt-15 md:mt-25 lg:mt-15 flex items-center justify-center gap-2 font-lora bg-[var(--primary-color)] text-white text-sm text-center border-black border-1 rounded-3xl cursor-pointer py-2 px-4
+                    class="button opacity-0 w-[70%] md:w-[40%] lg:w-[70%] mt-15 md:mt-25 lg:mt-15 flex items-center justify-center gap-2 font-lora bg-[var(--primary-color)] text-white text-sm text-center border-black border-1 rounded-3xl cursor-pointer py-2 px-4
                     md:text-2xl lg:text-sm
                     active:scale-95 focus:bg-[var(--primary-color)]"
                 >

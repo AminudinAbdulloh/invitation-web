@@ -236,176 +236,332 @@ document.addEventListener("DOMContentLoaded", function () {
     animatedScroll(".countdown-item-second", "slide-in-up", "1.5s", "ease", "0s", "1");
 
     showBackground("large-background", "block");
-});
 
-function smoothScrollTo(start, end, duration, callback) {
-    let startTime = null;
+    // Menambahkan event listener untuk tombol copy rekening
+    document.addEventListener('DOMContentLoaded', function () {
+        const copyRekeningButton = document.querySelector('.countdown-wrap .w-full:nth-child(3) .button');
+        const copyAlamatButton = document.querySelector('.countdown-wrap .w-full:nth-child(4) .button');
 
-    function animationStep(timestamp) {
-        if (!startTime) startTime = timestamp;
-        const progress = Math.min((timestamp - startTime) / duration, 1);
-        const easeInOut = progress < 0.5 ? 2 * progress ** 2 : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-        window.scrollTo(0, start + (end - start) * easeInOut);
-
-        if (progress < 1) {
-            requestAnimationFrame(animationStep);
-        } else {
-            if (callback) callback(); // Panggil callback setelah scroll selesai
-        }
-    }
-
-    requestAnimationFrame(animationStep);
-}
-
-function toggleAudio(currentAudio, otherAudio, playIcon, pauseIcon, otherPlayIcon, otherPauseIcon) {
-    if (currentAudio.paused) {
-        if (!otherAudio.paused) {
-            otherAudio.pause();
-            otherPauseIcon.classList.add("hidden");
-            otherPlayIcon.classList.remove("hidden");
-        }
-        currentAudio.play();
-        pauseIcon.classList.remove("hidden");
-        playIcon.classList.add("hidden");
-    } else {
-        currentAudio.pause();
-        pauseIcon.classList.add("hidden");
-        playIcon.classList.remove("hidden");
-    }
-}
-
-function animatedScroll(selector, enterAnimation, duration = "1s", timingFunction = "ease-in-out", delay = "0.25s", iteration = "1", nextAnimation = null, threshold = 0.2) {
-    const elements = document.querySelectorAll(selector);
-
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const element = entry.target;
-
-                // Cek apakah elemen sudah dianimasikan sebelumnya
-                if (!element.classList.contains("animated-once")) {
-                    element.style.animation = `${enterAnimation} ${duration} ${timingFunction} ${delay} ${iteration} forwards`;
-
-                    setTimeout(() => {
-                        element.style.transition = "opacity 0.25s ease-in-out"; // Menambahkan efek transisi
-                        element.style.opacity = "1"; // Ubah opacity secara bertahap
-                    }, parseFloat(delay) * 1000 + 500);
-
-                    // Tambahkan event listener untuk mengatur animasi kedua
-                    element.addEventListener("animationend", function animationEndHandler() {
-                        element.classList.add("animated-once"); // Tandai bahwa animasi pertama sudah dilakukan
-
-                        if (nextAnimation) {
-                            requestAnimationFrame(() => {
-                                element.style.animation = `${nextAnimation} 5s ease-in-out infinite alternate`;
-                            });
-                        }
-
-                        element.removeEventListener("animationend", animationEndHandler);
-                    });
-                }
-            }
-        });
-    }, { threshold });
-
-    elements.forEach(element => observer.observe(element));
-}
-
-function animatedScroll2(selector, animations = [], threshold = 0.2) {
-    const elements = document.querySelectorAll(selector);
-
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add(...animations);
-            }
-        });
-    }, { threshold });
-
-    elements.forEach(element => observer.observe(element));
-}
-
-// Fungsi Count Down
-function startCountdown(targetDate) {
-    function updateCountdown() {
-        let now = new Date().getTime();
-        let timeDiff = targetDate - now;
-
-        if (timeDiff <= 0) {
-            document.getElementById("day").innerHTML = "00";
-            document.getElementById("hour").innerHTML = "00";
-            document.getElementById("minute").innerHTML = "00";
-            document.getElementById("second").innerHTML = "00";
-            clearInterval(timer);
-            return;
+        if (copyRekeningButton) {
+            copyRekeningButton.addEventListener('click', function () {
+                const rekeningNumber = document.getElementById('rekening-number').textContent;
+                copyToClipboard(rekeningNumber, this);
+            });
         }
 
-        let days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // Jam
-        let minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
-        let seconds = Math.floor((timeDiff / 1000) % 60);
+        if (copyAlamatButton) {
+            copyAlamatButton.addEventListener('click', function () {
+                const alamat = document.getElementById('alamat-rumah').textContent;
+                copyToClipboard(alamat, this);
+            });
+        }
+    });
 
-        document.getElementById("day").innerHTML = String(days).padStart(2, '0');
-        document.getElementById("hour").innerHTML = String(hours).padStart(2, '0'); // Menampilkan jam
-        document.getElementById("minute").innerHTML = String(minutes).padStart(2, '0');
-        document.getElementById("second").innerHTML = String(seconds).padStart(2, '0');
-    }
+    // Image paths (in a real implementation, these would be your actual image paths)
+    const imagePaths = [
+        './assets/mempelai/m-1.jpeg',
+        './assets/mempelai/m-2.jpg',
+        './assets/mempelai/m-3.jpg',
+        './assets/mempelai/m-4.jpg',
+        './assets/mempelai/m-5.jpg',
+        './assets/mempelai/m-6.jpg',
+        './assets/mempelai/m-7.jpg',
+        './assets/mempelai/m-8.jpg'
+    ];
 
-    let timer = setInterval(updateCountdown, 1000);
-    updateCountdown(); // Menjalankan langsung saat halaman dimuat
-}
+    // Elements
+    const lightbox = document.getElementById('photoLightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const closeLightbox = document.getElementById('closeLightbox');
+    const prevSlide = document.getElementById('prevSlide');
+    const nextSlide = document.getElementById('nextSlide');
+    const slideCounter = document.getElementById('slideCounter');
+    const galleryItems = document.querySelectorAll('.rounded-lg img');
 
-function showBackground(idTarget, position) {
-    // Dapatkan elemen target yang ingin ditampilkan
-    let target = document.getElementById(idTarget);
+    let currentIndex = 0;
 
-    // Buat elemen pemicu (Anda perlu menambahkan ini ke HTML Anda)
-    // Misalnya: <div id="trigger-for-background" class="h-screen"></div>
-    let trigger = document.getElementById("trigger-for-background");
-
-    let observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                target.classList.remove("hidden");
-                target.classList.add(position);
-            }
+    // Open lightbox when clicking on an image
+    galleryItems.forEach(item => {
+        item.addEventListener('click', function () {
+            currentIndex = parseInt(this.getAttribute('data-index'));
+            openLightbox(currentIndex);
         });
     });
 
-    // Amati elemen pemicu, bukan target
-    observer.observe(trigger);
-}
+    // Close lightbox
+    closeLightbox.addEventListener('click', function () {
+        lightbox.classList.add('hidden');
+        lightbox.style.display = 'none';
+    });
 
-async function loadUcapan() {
-    try {
-        const response = await fetch('http://localhost:4000/api/ucapan');
-        const result = await response.json();
+    // Close lightbox when clicking outside the image
+    lightbox.addEventListener('click', function (event) {
+        if (event.target === lightbox) {
+            lightbox.classList.add('hidden');
+        }
+    });
 
-        const ucapanContainer = document.querySelector('.overflow-y-scroll');
-        ucapanContainer.innerHTML = ''; // Kosongkan dulu kontainer
+    // Navigate to previous slide
+    prevSlide.addEventListener('click', function () {
+        navigateSlide(-1);
+    });
 
-        result.data
-            .filter(item => item.ucapan) // hanya ambil yang ada ucapan
-            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) // urutkan terbaru ke lama
-            .forEach(item => {
-                const tanggal = new Date(item.created_at);
-                const formattedDate = tanggal.toLocaleDateString('en-GB', {
-                    day: '2-digit',
-                    month: 'short',
-                    year: 'numeric'
-                }) + ', ' + tanggal.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    // Navigate to next slide
+    nextSlide.addEventListener('click', function () {
+        navigateSlide(1);
+    });
 
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'flex flex-col gap-2 bg-[var(--tertiary-color)] p-2 rounded-lg';
-                messageDiv.innerHTML = `
-                    <span class="font-crimson text-sm md:text-xl lg:text-sm text-[var(--primary-color)]">${item.nama}</span>
-                    <span class="font-crimson text-xs md:text-sm lg:text-xs text-[var(--quaternary-color)]">${formattedDate}</span>
-                    <span class="font-crimson text-sm md:text-xl lg:text-sm text-[var(--quaternary-color)]">${item.ucapan}</span>
-                `;
-                ucapanContainer.appendChild(messageDiv);
-            });
+    // Keyboard navigation
+    document.addEventListener('keydown', function (event) {
+        if (lightbox.classList.contains('hidden')) return;
 
-    } catch (error) {
-        console.error('Gagal memuat data:', error);
+        if (event.key === 'Escape') {
+            lightbox.classList.add('hidden');
+        } else if (event.key === 'ArrowLeft') {
+            navigateSlide(-1);
+        } else if (event.key === 'ArrowRight') {
+            navigateSlide(1);
+        }
+    });
+
+    function smoothScrollTo(start, end, duration, callback) {
+        let startTime = null;
+
+        function animationStep(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const easeInOut = progress < 0.5 ? 2 * progress ** 2 : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+            window.scrollTo(0, start + (end - start) * easeInOut);
+
+            if (progress < 1) {
+                requestAnimationFrame(animationStep);
+            } else {
+                if (callback) callback(); // Panggil callback setelah scroll selesai
+            }
+        }
+
+        requestAnimationFrame(animationStep);
     }
-}
+
+    function toggleAudio(currentAudio, otherAudio, playIcon, pauseIcon, otherPlayIcon, otherPauseIcon) {
+        if (currentAudio.paused) {
+            if (!otherAudio.paused) {
+                otherAudio.pause();
+                otherPauseIcon.classList.add("hidden");
+                otherPlayIcon.classList.remove("hidden");
+            }
+            currentAudio.play();
+            pauseIcon.classList.remove("hidden");
+            playIcon.classList.add("hidden");
+        } else {
+            currentAudio.pause();
+            pauseIcon.classList.add("hidden");
+            playIcon.classList.remove("hidden");
+        }
+    }
+
+    function animatedScroll(selector, enterAnimation, duration = "1s", timingFunction = "ease-in-out", delay = "0.25s", iteration = "1", nextAnimation = null, threshold = 0.2) {
+        const elements = document.querySelectorAll(selector);
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+
+                    // Cek apakah elemen sudah dianimasikan sebelumnya
+                    if (!element.classList.contains("animated-once")) {
+                        element.style.animation = `${enterAnimation} ${duration} ${timingFunction} ${delay} ${iteration} forwards`;
+
+                        setTimeout(() => {
+                            element.style.transition = "opacity 0.25s ease-in-out"; // Menambahkan efek transisi
+                            element.style.opacity = "1"; // Ubah opacity secara bertahap
+                        }, parseFloat(delay) * 1000 + 500);
+
+                        // Tambahkan event listener untuk mengatur animasi kedua
+                        element.addEventListener("animationend", function animationEndHandler() {
+                            element.classList.add("animated-once"); // Tandai bahwa animasi pertama sudah dilakukan
+
+                            if (nextAnimation) {
+                                requestAnimationFrame(() => {
+                                    element.style.animation = `${nextAnimation} 5s ease-in-out infinite alternate`;
+                                });
+                            }
+
+                            element.removeEventListener("animationend", animationEndHandler);
+                        });
+                    }
+                }
+            });
+        }, { threshold });
+
+        elements.forEach(element => observer.observe(element));
+    }
+
+    function animatedScroll2(selector, animations = [], threshold = 0.2) {
+        const elements = document.querySelectorAll(selector);
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(...animations);
+                }
+            });
+        }, { threshold });
+
+        elements.forEach(element => observer.observe(element));
+    }
+
+    // Fungsi Count Down
+    function startCountdown(targetDate) {
+        function updateCountdown() {
+            let now = new Date().getTime();
+            let timeDiff = targetDate - now;
+
+            if (timeDiff <= 0) {
+                document.getElementById("day").innerHTML = "00";
+                document.getElementById("hour").innerHTML = "00";
+                document.getElementById("minute").innerHTML = "00";
+                document.getElementById("second").innerHTML = "00";
+                clearInterval(timer);
+                return;
+            }
+
+            let days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // Jam
+            let minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
+            let seconds = Math.floor((timeDiff / 1000) % 60);
+
+            document.getElementById("day").innerHTML = String(days).padStart(2, '0');
+            document.getElementById("hour").innerHTML = String(hours).padStart(2, '0'); // Menampilkan jam
+            document.getElementById("minute").innerHTML = String(minutes).padStart(2, '0');
+            document.getElementById("second").innerHTML = String(seconds).padStart(2, '0');
+        }
+
+        let timer = setInterval(updateCountdown, 1000);
+        updateCountdown(); // Menjalankan langsung saat halaman dimuat
+    }
+
+    function showBackground(idTarget, position) {
+        // Dapatkan elemen target yang ingin ditampilkan
+        let target = document.getElementById(idTarget);
+
+        // Buat elemen pemicu (Anda perlu menambahkan ini ke HTML Anda)
+        // Misalnya: <div id="trigger-for-background" class="h-screen"></div>
+        let trigger = document.getElementById("trigger-for-background");
+
+        let observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    target.classList.remove("hidden");
+                    target.classList.add(position);
+                }
+            });
+        });
+
+        // Amati elemen pemicu, bukan target
+        observer.observe(trigger);
+    }
+
+    async function loadUcapan() {
+        try {
+            const response = await fetch('http://localhost:4000/api/ucapan');
+            const result = await response.json();
+
+            const ucapanContainer = document.querySelector('.overflow-y-scroll');
+            ucapanContainer.innerHTML = ''; // Kosongkan dulu kontainer
+
+            result.data
+                .filter(item => item.ucapan) // hanya ambil yang ada ucapan
+                .sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) // urutkan terbaru ke lama
+                .forEach(item => {
+                    const tanggal = new Date(item.created_at);
+                    const formattedDate = tanggal.toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric'
+                    }) + ', ' + tanggal.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'flex flex-col gap-2 bg-[var(--tertiary-color)] p-2 rounded-lg';
+                    messageDiv.innerHTML = `
+                        <span class="font-crimson text-sm md:text-xl lg:text-sm text-[var(--primary-color)]">${item.nama}</span>
+                        <span class="font-crimson text-xs md:text-sm lg:text-xs text-[var(--quaternary-color)]">${formattedDate}</span>
+                        <span class="font-crimson text-sm md:text-xl lg:text-sm text-[var(--quaternary-color)]">${item.ucapan}</span>
+                    `;
+                    ucapanContainer.appendChild(messageDiv);
+                });
+
+        } catch (error) {
+            console.error('Gagal memuat data:', error);
+        }
+    }
+
+    // Fungsi untuk menyalin teks ke clipboard
+    function copyToClipboard(text, button) {
+        // Menggunakan Clipboard API jika tersedia
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    // Panggil fungsi untuk update teks tombol jika berhasil
+                    updateButtonText(button);
+                })
+                .catch(err => {
+                    console.error('Gagal menyalin teks: ', err);
+                });
+        } else {
+            // Fallback untuk browser yang tidak mendukung Clipboard API
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            try {
+                const success = document.execCommand('copy');
+                if (success) {
+                    // Panggil fungsi untuk update teks tombol jika berhasil
+                    updateButtonText(button);
+                }
+            } catch (err) {
+                console.error('Gagal menyalin teks: ', err);
+            }
+
+            document.body.removeChild(textarea);
+        }
+    }
+
+    // Fungsi untuk mengubah teks tombol setelah diklik
+    function updateButtonText(button) {
+        const originalText = button.innerHTML;
+        button.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" viewBox="0 0 448 512">
+                <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+            </svg> Tersalin!
+        `;
+
+        setTimeout(() => {
+            button.innerHTML = originalText;
+        }, 2000);
+    }
+
+    // Open lightbox with specific image
+    function openLightbox(index) {
+        lightboxImage.src = imagePaths[index];
+        lightbox.classList.remove('hidden');
+        lightbox.style.display = 'flex';
+        updateSlideCounter();
+    }
+
+    // Navigate to previous or next slide
+    function navigateSlide(direction) {
+        currentIndex = (currentIndex + direction + imagePaths.length) % imagePaths.length;
+        lightboxImage.src = imagePaths[currentIndex];
+        updateSlideCounter();
+    }
+
+    // Update slide counter
+    function updateSlideCounter() {
+        slideCounter.textContent = `${currentIndex + 1} / ${imagePaths.length}`;
+    }
+});

@@ -20,15 +20,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const playTiaraIcon = document.getElementById("play-tiara-icon");
     const pauseJaluIcon = document.getElementById("pause-jalu-icon");
     const playJaluIcon = document.getElementById("play-jalu-icon");
-    
+
     // Pastikan kondisi awal sudah benar
     nextPage.classList.add("hidden"); // Pastikan next-page tersembunyi di awal
-    
+
     // Nama Tamu Undangan
     const urlParams = new URLSearchParams(window.location.search);
     const guestName = urlParams.get("to");
     const guest = document.getElementById("guest-name");
-    if(guestName) {
+    if (guestName) {
         guest.innerText = guestName;
     } else {
         guest.innerText = "-";
@@ -60,13 +60,121 @@ document.addEventListener("DOMContentLoaded", function () {
     musicTiaraButton.addEventListener("click", () => {
         toggleAudio(audioTiara, audioJalu, playTiaraIcon, pauseTiaraIcon, playJaluIcon, pauseJaluIcon);
     });
-    
     musicJaluButton.addEventListener("click", () => {
         toggleAudio(audioJalu, audioTiara, playJaluIcon, pauseJaluIcon, playTiaraIcon, pauseTiaraIcon);
     });
 
+    // Tombol Kirim RSVP
+    document.getElementById('send-rsvp').addEventListener('click', async function (e) {
+        e.preventDefault();
+        const button = e.currentTarget;
+        const form = button.closest('form');
+
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        const alertGagal = document.getElementById('alert-gagal');
+        const alertBerhasil = document.getElementById('alert-berhasil');
+        const alertGagalText = document.getElementById('text-alert-gagal');
+        const alertBerhasilText = document.getElementById('text-alert-berhasil');
+
+        const sendText = document.getElementById('send-text');
+        const loadingIcon = document.getElementById('loading-icon');
+
+        // Reset alert
+        alertGagal.classList.add('hidden');
+        alertBerhasil.classList.add('hidden');
+
+        // Ganti tombol jadi loading
+        sendText.classList.add('hidden');
+        loadingIcon.classList.remove('hidden');
+        button.disabled = true;
+
+        const nama = document.getElementById('base-input').value;
+        const kehadiran = document.getElementById('kehadiran').value;
+        const jumlahTamu = Number(document.getElementById('jumlah-tamu').value);
+        const ucapan = document.getElementById('ucapan').value;
+
+        const data = { nama, kehadiran, jumlahTamu, ucapan };
+
+        try {
+            const response = await fetch('http://localhost:4000/api/rsvp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                alertBerhasilText.textContent = 'RSVP berhasil dikirim!';
+                alertBerhasil.classList.remove('hidden');
+
+                // Tambahkan Ucapan ke dalam kontainer
+                if (ucapan) {
+                    const ucapanContainer = document.querySelector('.overflow-y-scroll');
+
+                    const now = new Date();
+                    const formattedDate = now.toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric'
+                    }) + ', ' + now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'flex flex-col gap-2 bg-[var(--tertiary-color)] p-2 rounded-lg';
+                    messageDiv.innerHTML = `
+                    <span class="font-crimson text-sm text-[var(--primary-color)]">${nama}</span>
+                    <span class="font-crimson text-xs text-[var(--quaternary-color)]">${formattedDate}</span>
+                    <span class="font-crimson text-sm text-[var(--quaternary-color)]">${ucapan}</span>
+                `;
+
+                    // Sisipkan di awal (pesan terbaru di atas)
+                    if (ucapanContainer.firstChild) {
+                        ucapanContainer.insertBefore(messageDiv, ucapanContainer.firstChild);
+                    } else {
+                        ucapanContainer.appendChild(messageDiv);
+                    }
+
+                    // Scroll ke ucapan terbaru
+                    ucapanContainer.scrollTop = 0;
+                }
+
+                form.reset();
+            } else {
+                const error = await response.json();
+                alertGagalText.textContent = error.errors || 'Gagal mengirim RSVP.';
+                alertGagal.classList.remove('hidden');
+            }
+        } catch (error) {
+            alertGagalText.textContent = 'Terjadi kesalahan saat mengirim.';
+            alertGagal.classList.remove('hidden');
+        } finally {
+            // Kembalikan tombol ke kondisi semula
+            sendText.classList.remove('hidden');
+            loadingIcon.classList.add('hidden');
+            button.disabled = false;
+
+            setTimeout(() => {
+                alertGagal.classList.add('hidden');
+                alertBerhasil.classList.add('hidden');
+            }, 3000);
+        }
+    });
+
+    // Event listener untuk tombol close alert
+    document.querySelectorAll('button[data-dismiss-target]').forEach(button => {
+        button.addEventListener('click', function () {
+            const target = document.querySelector(this.getAttribute('data-dismiss-target'));
+            if (target) target.classList.add('hidden');
+        });
+    });
+
+    // Load Ucapan
+    loadUcapan();
+
     // Count Down
-    let endTime = new Date("May 18, 2025 00:00:00").getTime();
+    let endTime = new Date("May 18, 2025 08:00:00").getTime();
     startCountdown(endTime);
 
     // Animasi scroll
@@ -87,45 +195,45 @@ document.addEventListener("DOMContentLoaded", function () {
     ]);
     animatedScroll(".line", "spinner-grow", "1.8s", "ease", "0s", "1");
     animatedScroll(".button", "spinner-grow", "1.8s", "ease", "0s", "1");
-        // 1. Animasi Ornamen Quote
-            // Atas
-            animatedScroll(".orn-18-quote", "slide-in-up", "2s", "ease", "0s", "1");
-            // Ornamen Kiri
-            animatedScroll(".orn-39-quote-left", "slide-in-down", "1.8s", "ease", "0s", "1", "goyang");
-            animatedScroll(".orn-3-quote-left", "spinner-grow", "1.8s", "ease", "0s", "1", "goyang");
-            animatedScroll(".orn-22-quote-left", "spinner-grow", "1.8s", "ease", "0s", "1");
-            // Ornamen Kanan
-            animatedScroll(".orn-39-quote-right", "slide-in-down", "1.8s", "ease", "0s", "1", "goyang");
-            animatedScroll(".orn-3-quote-right", "spinner-grow", "1.8s", "ease", "0s", "1", "goyang");
-            animatedScroll(".orn-22-quote-right", "spinner-grow", "1.8s", "ease", "0s", "1");
+    // 1. Animasi Ornamen Quote
+    // Atas
+    animatedScroll(".orn-18-quote", "slide-in-up", "2s", "ease", "0s", "1");
+    // Ornamen Kiri
+    animatedScroll(".orn-39-quote-left", "slide-in-down", "1.8s", "ease", "0s", "1", "goyang");
+    animatedScroll(".orn-3-quote-left", "spinner-grow", "1.8s", "ease", "0s", "1", "goyang");
+    animatedScroll(".orn-22-quote-left", "spinner-grow", "1.8s", "ease", "0s", "1");
+    // Ornamen Kanan
+    animatedScroll(".orn-39-quote-right", "slide-in-down", "1.8s", "ease", "0s", "1", "goyang");
+    animatedScroll(".orn-3-quote-right", "spinner-grow", "1.8s", "ease", "0s", "1", "goyang");
+    animatedScroll(".orn-22-quote-right", "spinner-grow", "1.8s", "ease", "0s", "1");
 
-        // 2. Animasi Ornamen Couple
-            // Ornamen Kiri
-            animatedScroll(".orn-couple-frame", "spinner-grow", "1.5s", "ease", "0s", "1");
-            animatedScroll(".orn-2-couple-left", "slide-in-right", "2s", "ease", "0s", "1", "goyang");
-            animatedScroll(".orn-38-couple", "slide-in-down", "1.5s", "ease", "0s", "1");
-            animatedScroll(".orn-39-couple-left", "slide-in-down", "1.8s", "ease", "0s", "1");
-            animatedScroll(".orn-11-couple-left", "slide-in-down", "2s", "ease", "0s", "1");
-            animatedScroll(".orn-6-couple-left", "slide-in-down", "2s", "ease", "0s", "1");
-            animatedScroll(".orn-4-couple-left", "fade-in-top-left", "2s", "ease", "0s", "1", "goyang");
-            // Ornamen Kanan
-            animatedScroll(".orn-couple-frame", "spinner-grow", "1.5s", "ease", "0s", "1");
-            animatedScroll(".orn-2-couple-right", "slide-in-right", "2s", "ease", "0s", "1", "goyang");
-            animatedScroll(".orn-38-couple", "slide-in-down", "1.5s", "ease", "0s", "1");
-            animatedScroll(".orn-39-couple-right", "slide-in-down", "1.8s", "ease", "0s", "1");
-            animatedScroll(".orn-11-couple-right", "slide-in-down", "2s", "ease", "0s", "1");
-            animatedScroll(".orn-6-couple-right", "slide-in-down", "2s", "ease", "0s", "1");
-            animatedScroll(".orn-4-couple-right", "fade-in-top-right", "2s", "ease", "0s", "1", "goyang");
+    // 2. Animasi Ornamen Couple
+    // Ornamen Kiri
+    animatedScroll(".orn-couple-frame", "spinner-grow", "1.5s", "ease", "0s", "1");
+    animatedScroll(".orn-2-couple-left", "slide-in-right", "2s", "ease", "0s", "1", "goyang");
+    animatedScroll(".orn-38-couple", "slide-in-down", "1.5s", "ease", "0s", "1");
+    animatedScroll(".orn-39-couple-left", "slide-in-down", "1.8s", "ease", "0s", "1");
+    animatedScroll(".orn-11-couple-left", "slide-in-down", "2s", "ease", "0s", "1");
+    animatedScroll(".orn-6-couple-left", "slide-in-down", "2s", "ease", "0s", "1");
+    animatedScroll(".orn-4-couple-left", "fade-in-top-left", "2s", "ease", "0s", "1", "goyang");
+    // Ornamen Kanan
+    animatedScroll(".orn-couple-frame", "spinner-grow", "1.5s", "ease", "0s", "1");
+    animatedScroll(".orn-2-couple-right", "slide-in-right", "2s", "ease", "0s", "1", "goyang");
+    animatedScroll(".orn-38-couple", "slide-in-down", "1.5s", "ease", "0s", "1");
+    animatedScroll(".orn-39-couple-right", "slide-in-down", "1.8s", "ease", "0s", "1");
+    animatedScroll(".orn-11-couple-right", "slide-in-down", "2s", "ease", "0s", "1");
+    animatedScroll(".orn-6-couple-right", "slide-in-down", "2s", "ease", "0s", "1");
+    animatedScroll(".orn-4-couple-right", "fade-in-top-right", "2s", "ease", "0s", "1", "goyang");
 
-        // 3. Animasi Ornamen Footer
-            // Other
-            animatedScroll(".orn-footer", "spinner-grow", "1.8s", "ease", "0s", "1");
+    // 3. Animasi Ornamen Footer
+    // Other
+    animatedScroll(".orn-footer", "spinner-grow", "1.8s", "ease", "0s", "1");
 
-        // 4. Animasi Countdown
-        animatedScroll(".countdown-item-day", "slide-in-down", "1.5s", "ease", "0s", "1");
-        animatedScroll(".countdown-item-hour", "slide-in-up", "1.5s", "ease", "0s", "1");
-        animatedScroll(".countdown-item-minute", "slide-in-down", "1.5s", "ease", "0s", "1");
-        animatedScroll(".countdown-item-second", "slide-in-up", "1.5s", "ease", "0s", "1");
+    // 4. Animasi Countdown
+    animatedScroll(".countdown-item-day", "slide-in-down", "1.5s", "ease", "0s", "1");
+    animatedScroll(".countdown-item-hour", "slide-in-up", "1.5s", "ease", "0s", "1");
+    animatedScroll(".countdown-item-minute", "slide-in-down", "1.5s", "ease", "0s", "1");
+    animatedScroll(".countdown-item-second", "slide-in-up", "1.5s", "ease", "0s", "1");
 
     showBackground("large-background", "block");
 });
@@ -250,11 +358,11 @@ function startCountdown(targetDate) {
 function showBackground(idTarget, position) {
     // Dapatkan elemen target yang ingin ditampilkan
     let target = document.getElementById(idTarget);
-    
+
     // Buat elemen pemicu (Anda perlu menambahkan ini ke HTML Anda)
     // Misalnya: <div id="trigger-for-background" class="h-screen"></div>
     let trigger = document.getElementById("trigger-for-background");
-    
+
     let observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -263,7 +371,41 @@ function showBackground(idTarget, position) {
             }
         });
     });
-    
+
     // Amati elemen pemicu, bukan target
     observer.observe(trigger);
+}
+
+async function loadUcapan() {
+    try {
+        const response = await fetch('http://localhost:4000/api/ucapan');
+        const result = await response.json();
+
+        const ucapanContainer = document.querySelector('.overflow-y-scroll');
+        ucapanContainer.innerHTML = ''; // Kosongkan dulu kontainer
+
+        result.data
+            .filter(item => item.ucapan) // hanya ambil yang ada ucapan
+            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) // urutkan terbaru ke lama
+            .forEach(item => {
+                const tanggal = new Date(item.created_at);
+                const formattedDate = tanggal.toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                }) + ', ' + tanggal.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'flex flex-col gap-2 bg-[var(--tertiary-color)] p-2 rounded-lg';
+                messageDiv.innerHTML = `
+                    <span class="font-crimson text-sm md:text-xl lg:text-sm text-[var(--primary-color)]">${item.nama}</span>
+                    <span class="font-crimson text-xs md:text-sm lg:text-xs text-[var(--quaternary-color)]">${formattedDate}</span>
+                    <span class="font-crimson text-sm md:text-xl lg:text-sm text-[var(--quaternary-color)]">${item.ucapan}</span>
+                `;
+                ucapanContainer.appendChild(messageDiv);
+            });
+
+    } catch (error) {
+        console.error('Gagal memuat data:', error);
+    }
 }

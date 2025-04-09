@@ -237,23 +237,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     showBackground("large-background", "block");
 
-    // Menambahkan event listener untuk tombol copy rekening
-    document.addEventListener('DOMContentLoaded', function () {
-        const copyRekeningButton = document.querySelector('.countdown-wrap .w-full:nth-child(3) .button');
-        const copyAlamatButton = document.querySelector('.countdown-wrap .w-full:nth-child(4) .button');
-
-        if (copyRekeningButton) {
-            copyRekeningButton.addEventListener('click', function () {
-                const rekeningNumber = document.getElementById('rekening-number').textContent;
-                copyToClipboard(rekeningNumber, this);
-            });
-        }
-
-        if (copyAlamatButton) {
-            copyAlamatButton.addEventListener('click', function () {
-                const alamat = document.getElementById('alamat-rumah').textContent;
-                copyToClipboard(alamat, this);
-            });
+    // Copy to Clipboard
+    document.addEventListener('click', function (event) {
+        if (event.target.closest('.copy-rekening-number')) {
+            const button = event.target.closest('.copy-rekening-number');
+            const rekeningNumber = document.getElementById('rekening-number')?.textContent || '';
+            copyToClipboard(rekeningNumber, button);
+        } else if (event.target.closest('.copy-alamat')) {
+            const button = event.target.closest('.copy-alamat');
+            const rekeningNumber = document.getElementById('alamat-rumah')?.textContent || '';
+            copyToClipboard(rekeningNumber, button);
         }
     });
 
@@ -496,6 +489,26 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Open lightbox with specific image
+    function openLightbox(index) {
+        lightboxImage.src = imagePaths[index];
+        lightbox.classList.remove('hidden');
+        lightbox.style.display = 'flex';
+        updateSlideCounter();
+    }
+
+    // Navigate to previous or next slide
+    function navigateSlide(direction) {
+        currentIndex = (currentIndex + direction + imagePaths.length) % imagePaths.length;
+        lightboxImage.src = imagePaths[currentIndex];
+        updateSlideCounter();
+    }
+
+    // Update slide counter
+    function updateSlideCounter() {
+        slideCounter.textContent = `${currentIndex + 1} / ${imagePaths.length}`;
+    }
+
     // Fungsi untuk menyalin teks ke clipboard
     function copyToClipboard(text, button) {
         // Menggunakan Clipboard API jika tersedia
@@ -535,33 +548,13 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateButtonText(button) {
         const originalText = button.innerHTML;
         button.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" viewBox="0 0 448 512">
-                <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
-            </svg> Tersalin!
-        `;
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" viewBox="0 0 448 512">
+            <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+        </svg> Tersalin!
+    `;
 
         setTimeout(() => {
             button.innerHTML = originalText;
         }, 2000);
-    }
-
-    // Open lightbox with specific image
-    function openLightbox(index) {
-        lightboxImage.src = imagePaths[index];
-        lightbox.classList.remove('hidden');
-        lightbox.style.display = 'flex';
-        updateSlideCounter();
-    }
-
-    // Navigate to previous or next slide
-    function navigateSlide(direction) {
-        currentIndex = (currentIndex + direction + imagePaths.length) % imagePaths.length;
-        lightboxImage.src = imagePaths[currentIndex];
-        updateSlideCounter();
-    }
-
-    // Update slide counter
-    function updateSlideCounter() {
-        slideCounter.textContent = `${currentIndex + 1} / ${imagePaths.length}`;
     }
 });

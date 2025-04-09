@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download RSVP Tiara & Jalu</title>
+    <link rel="stylesheet" href="./output.css">
+    <link rel="icon" href="./assets/elements/favicon.png">
+    <!-- Include SheetJS library for Excel file generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+
+<body class="font-crimson flex flex-col items-center gap-5 bg-[var(--secondary-color)]">
+    <div class="w-full flex flex-col justify-center items-center gap-10 p-10">
+        <h1 class="text-6xl">Daftar Kehadiran</h1>
+        <div class="relative w-full overflow-x-auto shadow-md sm:rounded-lg">
+            <table id="rsvp-table" class="w-full text-sm text-left rtl:text-right text-blue-100">
+                <thead class="text-xs text-black uppercase">
+                    <tr class="bg-[var(--tertiary-color)]">
+                        <th scope="col" class="text-center text-2xl px-6 py-3">
+                            Nama
+                        </th>
+                        <th scope="col" class="text-center text-2xl px-6 py-3">
+                            Kehadiran
+                        </th>
+                        <th scope="col" class="text-center text-2xl px-6 py-3">
+                            Jumlah Tamu
+                        </th>
+                        <th scope="col" class="text-center text-2xl px-6 py-3">
+                            Ucapan
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="rsvp-data" class="text-sm text-black">
+                    <!-- Data will be populated here via JavaScript -->
+                    <tr>
+                        <td colspan="4" class="text-center px-6 py-4">Loading data...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <button
+            id="download-rsvp"
+            class="w-50 flex items-center justify-center gap-2 font-crimson bg-[var(--primary-color)] text-white text-xs border-black border-1 rounded-3xl cursor-pointer py-2 px-4
+            lg:text-xl
+            active:scale-95 focus:bg-[var(--primary-color)]"
+        >
+            Download
+        </button>
+    </div>
+
+    <script src="./download.js"></script>
+</body>
+</html>

@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Image paths (in a real implementation, these would be your actual image paths)
     const imagePaths = [
-        './assets/mempelai/m-1.jpeg',
+        './assets/mempelai/m-1.jpg',
         './assets/mempelai/m-2.jpg',
         './assets/mempelai/m-3.jpg',
         './assets/mempelai/m-4.jpg',
@@ -558,3 +558,57 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 2000);
     }
 });
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+let width, height;
+
+function resizeCanvas() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+const particles = [];
+
+function createParticle() {
+    return {
+        x: Math.random() * width,
+        y: Math.random() * -height,
+        radius: Math.random() * 3 + 3,       // ukuran partikel: 3–6
+        speedY: Math.random() * 0.7 + 0.5,   // kecepatan jatuh: 0.5–1.2
+        opacity: Math.random() * 0.3 + 0.1   // transparansi: 0.1–0.4
+    };
+}
+
+for (let i = 0; i < 40; i++) {
+    particles.push(createParticle());
+}
+
+function draw() {
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+    ctx.fillRect(0, 0, width, height);
+
+    particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+        ctx.shadowColor = "#ffffff";
+        ctx.shadowBlur = 12;
+        ctx.fill();
+
+        p.y += p.speedY;
+
+        if (p.y > height) {
+            p.y = -10;
+            p.x = Math.random() * width;
+        }
+    });
+
+    requestAnimationFrame(draw);
+}
+
+draw();

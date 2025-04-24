@@ -164,14 +164,14 @@
         </div>
         
         <!-- Content -->
-        <section class="items-center pb-0">
+        <section class="flex flex-col justify-center items-center pb-0 lg:max-w-[30%]">
             <!-- Opening -->
-            <section class="w-full min-h-screen lg:max-w-[425px] overflow-hidden">
-                <!-- <canvas id="canvas" class="absolute w-full h-full"></canvas> -->
+            <section class="w-full lg:max-w-max mx-auto overflow-hidden">
                 <img src="./assets/mempelai/m-opening.jpg" alt="" 
-                    class="w-full h-auto min-h-screen object-cover lg:h-screen">
+                    class="w-full h-auto object-cover lg:h-screen">
             </section>
 
+            <!-- Footer -->
             <div id="trigger-for-background" class="relative w-full">
                 <img src="./assets/elements/orn-25-min.png" alt=""
                     class="orn-footer absolute opacity-0 w-[40%] -top-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -194,7 +194,7 @@
             </div>
 
             <!-- Acara Pernikahan --> 
-            <section class="w-full lg:max-w-[425px] min-h-screen flex flex-col gap-5 md:gap-30 lg:gap-5 pt-50 pb-20 md:pt-80 lg:pt-50 overflow-hidden bg-[var(--secondary-color)]">
+            <section class="w-full min-h-screen flex flex-col gap-5 md:gap-30 lg:gap-5 pt-50 pb-20 md:pt-80 lg:pt-50 overflow-hidden bg-[var(--secondary-color)]">
                 <!-- Quote -->
                 <section class="quote-wrap w-full flex flex-col justify-center items-center">
                     <div class="quote-content w-full flex flex-col justify-center items-center">
@@ -369,7 +369,7 @@
             </div>
 
             <!-- Acara Perniikahan -->
-            <section class="lg:border-8 border-[var(--secondary-color)] lg:max-w-[425px]">
+            <section class="lg:border-8 border-[var(--secondary-color)]">
                 <section class="py-15 px-5 md:py-25 md:px-10 lg:py-15 lg:px-5">
                     <div class="flex flex-col justify-center items-center gap-0 border-3 border-[var(--primary-color)] rounded-2xl bg-[var(--tertiary-color-transparant)] px-2 py-5 md:px-4 md:py-10 lg:px-2 lg:py-5">
                         <span class="title font-hurricane opacity-0 font-bold text-4xl md:text-6xl lg:text-4xl text-[var(--primary-color)]">Acara Pernikahan</span>
@@ -402,7 +402,7 @@
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24" height="24" fill="currentColor">
                                     <path d="M192 0C86 0 0 86 0 192c0 87 123 231 170 279a24 24 0 0 0 34 0c47-48 170-192 170-279C384 86 298 0 192 0Zm0 272a80 80 0 1 1 0-160 80 80 0 1 1 0 160Z"/>
-                                </svg> Buka Undangan
+                                </svg> Buka Maps
                             </a>
                         </div>
                     </div>
@@ -431,7 +431,7 @@
                 </div>
             </div>
 
-            <section class="w-full lg:max-w-[425px] min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[var(--secondary-color)] pt-5 md:pt-30 lg:pt-5 gap-10 pb-0">
+            <section class="w-full min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[var(--secondary-color)] pt-5 md:pt-30 lg:pt-5 gap-10 pb-0">
                 <!-- Count Down -->
                 <section class="relative countdown-wrap w-full flex flex-col gap-20 md:gap-30 lg:gap-20 justify-center items-center py-4">
                     <span class="title opacity-0 font-great font-bold text-4xl md:text-6xl lg:text-4xl text-[var(--primary-color)]">Hari Yang Ditunggu</span>
@@ -556,7 +556,7 @@
                     <p class="description opacity-0 font-roboto text-sm md:text-2xl lg:text-sm text-center text-[var(--quaternary-color)]">
                         Kehadiran Anda di pernikahan kami lebih penting daripada hadiah. Akan tetapi, meskipun kehadiran Anda cukup berarti, kami menghargai segala bentuk doa dan hadiah dari Anda.
                     </p>
-                    <div class="w-full flex flex-col gap-5 bg-[var(--tertiary-color)] p-2 rounded-lg">
+                    <div class="w-full flex flex-col gap-2 bg-[var(--tertiary-color)] p-2 rounded-lg">
                         <div class="flex justify-between">
                             <span class="font-roboto text-sm md:text-2xl lg:text-sm text-[var(--quaternary-color)]">A.n. Ulul Albab Tiara</span>
                             <img src="./assets/elements/logo-bca.webp" alt="" class="w-[30%]">
@@ -591,7 +591,7 @@
 
                 <!-- Galery -->
                 <section class="relative countdown-wrap w-full flex flex-col gap-5 justify-center items-center p-4">
-                    <span class="title opacity-0 font-great font-bold text-4xl md:text-6xl lg:text-4xl text-[var(--primary-color)]">Galery</span>
+                    <span class="title opacity-0 font-great font-bold text-4xl md:text-6xl lg:text-4xl text-[var(--primary-color)]">Our Galery</span>
                     <div class="p-8 bg-cover bg-center rounded" style="background-image: linear-gradient(var(--tertiary-color-transparant2), var(--tertiary-color-transparant2)), url('./assets/mempelai/m-5.jpg');">
                         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             <div class="relative overflow-hidden rounded-lg shadow-md cursor-pointer transition-transform duration-300 hover:scale-105">
@@ -646,7 +646,7 @@
             </div>
 
             <section class="relative w-full flex justify-center items-center py-15 bg-[var(--tertiary-color)] z-0">
-                <span class="title opacity-0 font-great font-bold text-4xl md:text-6xl lg:text-4xl text-[var(--primary-color)]">Terimakasih</span>
+                <span class="title opacity-0 font-great font-bold text-4xl md:text-6xl lg:text-4xl text-[var(--primary-color)]">Maturnuwun</span>
             </section>
         </section>
 

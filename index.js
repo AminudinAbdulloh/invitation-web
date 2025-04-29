@@ -258,8 +258,6 @@ document.addEventListener("DOMContentLoaded", function () {
         './assets/mempelai/m-4.jpg',
         './assets/mempelai/m-5.jpg',
         './assets/mempelai/m-6.jpg',
-        './assets/mempelai/m-7.jpg',
-        './assets/mempelai/m-8.jpg'
     ];
 
     // Elements

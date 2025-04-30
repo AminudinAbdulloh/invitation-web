@@ -252,12 +252,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Image paths (in a real implementation, these would be your actual image paths)
     const imagePaths = [
-        './assets/mempelai/m-1.jpg',
-        './assets/mempelai/m-2.jpg',
-        './assets/mempelai/m-3.jpg',
-        './assets/mempelai/m-4.jpg',
-        './assets/mempelai/m-5.jpg',
-        './assets/mempelai/m-6.jpg',
+        './assets/mempelai/m-1.jpeg',
+        './assets/mempelai/m-2.jpeg',
+        './assets/mempelai/m-3.jpeg',
+        './assets/mempelai/m-4.jpeg',
+        './assets/mempelai/m-5.jpeg',
+        './assets/mempelai/m-6.jpeg',
     ];
 
     // Elements
@@ -267,9 +267,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const prevSlide = document.getElementById('prevSlide');
     const nextSlide = document.getElementById('nextSlide');
     const slideCounter = document.getElementById('slideCounter');
-    const galleryItems = document.querySelectorAll('.rounded-lg img');
+    const galleryItems = document.querySelectorAll('.galery-photo');
 
     let currentIndex = 0;
+
+    // Book Our Story
+    const flipBook = (elBook) => {
+        elBook.style.setProperty("--c", 0); // Set current page
+        elBook.querySelectorAll(".page").forEach((page, idx) => {
+            page.style.setProperty("--i", idx);
+            page.addEventListener("click", (evt) => {
+            if (evt.target.closest("a")) return;
+            const curr = evt.target.closest(".back") ? idx : idx + 1;
+            elBook.style.setProperty("--c", curr);
+            });
+        });
+    };
+    
+    document.querySelectorAll(".book").forEach(flipBook);
 
     // Open lightbox when clicking on an image
     galleryItems.forEach(item => {
@@ -546,7 +561,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateButtonText(button) {
         const originalText = button.innerHTML;
         button.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" viewBox="0 0 448 512">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#57411c" viewBox="0 0 448 512">
             <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
         </svg> Tersalin!
     `;

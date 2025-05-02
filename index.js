@@ -195,6 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ]);
     animatedScroll(".line", "spinner-grow", "1.8s", "ease", "0s", "1");
     animatedScroll(".button", "spinner-grow", "1.8s", "ease", "0s", "1");
+    animatedScroll(".image", "spinner-grow", "1.8s", "ease", "0s", "1");
     // 1. Animasi Ornamen Quote
     // Atas
     animatedScroll(".orn-18-quote", "slide-in-up", "2s", "ease", "0s", "1");
@@ -239,9 +240,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Copy to Clipboard
     document.addEventListener('click', function (event) {
-        if (event.target.closest('.copy-rekening-number')) {
-            const button = event.target.closest('.copy-rekening-number');
-            const rekeningNumber = document.getElementById('rekening-number')?.textContent || '';
+        if (event.target.closest('.copy-rekening-bca-number')) {
+            const button = event.target.closest('.copy-rekening-bca-number');
+            const rekeningNumber = document.getElementById('rekening-bca-number')?.textContent || '';
+            copyToClipboard(rekeningNumber, button);
+        } else if (event.target.closest('.copy-rekening-bri-number')) {
+            const button = event.target.closest('.copy-rekening-bri-number');
+            const rekeningNumber = document.getElementById('rekening-bri-number')?.textContent || '';
             copyToClipboard(rekeningNumber, button);
         } else if (event.target.closest('.copy-alamat')) {
             const button = event.target.closest('.copy-alamat');

@@ -1855,35 +1855,11 @@ html, body {
 .font-great {
   font-family: "Great Vibes", cursive;
 }
-.font-montecarlo {
-  font-family: "MonteCarlo", cursive;
-}
-.font-pinyon {
-  font-family: "Pinyon Script", cursive;
-}
-.font-parisienne {
-  font-family: "Parisienne", cursive;
-}
-.font-carattere {
-  font-family: "Carattere", cursive;
-}
 .font-hurricane {
   font-family: "Hurricane", cursive;
 }
-.font-crimson {
-  font-family: "Crimson Text", serif;
-}
 .font-roboto {
   font-family: "Roboto Slab", sans-serif;
-}
-.font-comfortaa {
-  font-family: "Comfortaa", sans-serif;
-}
-.font-work-sans {
-  font-family: "Work Sans", sans-serif;
-}
-.font-quicksand {
-  font-family: "Quicksand", sans-serif;
 }
 .orn-2-couple-left, .orn-2-couple-right, .orn-39-quote-left, .orn-39-quote-right, .orn-3-quote-left, .orn-3-quote-right {
   transform-origin: 50% 100%;

@@ -478,7 +478,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const response = await fetch('http://localhost:4000/api/ucapan');
             const result = await response.json();
 
-            const ucapanContainer = document.querySelector('.overflow-y-scroll');
+            const ucapanContainer = document.querySelector('.ucapan');
             ucapanContainer.innerHTML = ''; // Kosongkan dulu kontainer
 
             result.data
@@ -497,7 +497,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     messageDiv.innerHTML = `
                         <span class="font-crimson text-sm md:text-xl lg:text-sm text-[var(--primary-color)]">${item.nama}</span>
                         <span class="font-crimson text-xs md:text-sm lg:text-xs text-[var(--quaternary-color)]">${formattedDate}</span>
-                        <span class="font-crimson text-sm md:text-xl lg:text-sm text-[var(--quaternary-color)]">${item.ucapan}</span>
+                        <span class="w-auto font-crimson text-sm md:text-xl lg:text-sm text-[var(--quaternary-color)]">${item.ucapan}</span>
                     `;
                     ucapanContainer.appendChild(messageDiv);
                 });

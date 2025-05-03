@@ -527,7 +527,7 @@
                 </section>
 
                 <!-- RSVP & Ucapan -->
-                <section class="relative countdown-wrap w-full flex flex-col gap-5 md:gap-10 lg:gap-5 justify-center items-center py-4 px-4">
+                <section class="w-full flex flex-col gap-5 md:gap-10 lg:gap-5 justify-center items-center p-4">
                     <span class="title font-roboto font-bold text-center text-4xl md:text-6xl lg:text-4xl text-[var(--primary-color)]">RSVP & Ucapan</span>
                     <form class="w-full flex flex-col gap-3">
                         <input type="text" id="base-input" 
@@ -562,11 +562,9 @@
                         </button>
                     </form>
                     <!-- Ucapan -->
-                    <div class="description w-full h-[340px] flex flex-col border-r-2 border-[var(--primary-color)]">
-                        <div class="max-h-[340px] overflow-y-scroll scrollbar-hide flex flex-col w-full gap-5">
-                            <div class="flex flex-col gap-2 bg-[var(--tertiary-color)] p-2 rounded-lg">
-                                
-                            </div>
+                    <div class="description w-full max-h-[340px] h-auto flex flex-col border-r-2 border-[var(--primary-color)]">
+                        <div class="ucapan max-h-[340px] overflow-y-scroll scrollbar-hide flex flex-col w-full gap-5">
+                            
                         </div>
                     </div>
                 </section>
@@ -778,6 +776,7 @@
                     </div>
                 </section>
             </section>
+            
             <div id="trigger-for-background" class="relative w-full z-9999">
                 <img src="./assets/elements/orn-25-min.png" alt=""
                     class="orn-footer absolute opacity-0 w-[40%] -top-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">

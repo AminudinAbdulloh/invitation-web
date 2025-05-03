@@ -1990,6 +1990,7 @@ html, body {
   display: flex;
   margin: auto;
   width: 40cqmin;
+  min-height: 250px;
   pointer-events: none;
   transform-style: preserve-3d;
   transition: translate 1s;
@@ -2001,6 +2002,7 @@ html, body {
   flex: none;
   display: flex;
   width: 100%;
+  min-height: 100%;
   font-size: 2cqmin;
   pointer-events: all;
   user-select: none;
@@ -2015,6 +2017,7 @@ html, body {
   position: relative;
   flex: none;
   width: 100%;
+  height: 100%;
   backface-visibility: hidden;
   overflow: hidden;
   background-color: #fff;
@@ -2075,7 +2078,7 @@ html, body {
   border-radius: .5em .1em .1em .5em;
 }
 .cover {
-  background: radial-gradient(circle farthest-corner at 80% 20%, hsl(150 80% 20% / .3) 0%, hsl(170 60% 10% / .1) 100%), hsl(231, 32%, 29%) url("./assets/mempelai/m-2.jpeg") 50% / cover;
+  background: radial-gradient(circle farthest-corner at 80% 20%, hsl(150 80% 20% / .3) 0%, hsl(170 60% 10% / .1) 100%), hsl(231, 32%, 29%) #fff 50% / cover;
   color: hsl(200 30% 98%);
 }
 @property --tw-translate-x {

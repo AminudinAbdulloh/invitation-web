@@ -2029,9 +2029,6 @@ html, body {
 }
 .book {
   counter-reset: page -1;
-  & a {
-    color: inherit;
-  }
 }
 .page {
   box-shadow: 0em .5em 1em -.2em #00000020;
@@ -2039,17 +2036,8 @@ html, body {
 .front, .back {
   display: flex;
   flex-flow: column wrap;
-  justify-content: space-between;
   padding: 2em;
   border: 1px solid #0002;
-  &:has(img) {
-    padding: 0;
-  }
-  & img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
   &::after {
     position: absolute;
     bottom: 1em;
@@ -2079,7 +2067,6 @@ html, body {
 }
 .cover {
   background: radial-gradient(circle farthest-corner at 80% 20%, hsl(150 80% 20% / .3) 0%, hsl(170 60% 10% / .1) 100%), hsl(231, 32%, 29%) #fff 50% / cover;
-  color: hsl(200 30% 98%);
 }
 @property --tw-translate-x {
   syntax: "*";

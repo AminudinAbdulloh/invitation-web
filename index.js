@@ -193,9 +193,14 @@ document.addEventListener("DOMContentLoaded", function () {
         "animate-duration-1500",
         "animate-delay-200"
     ]);
+    animatedScroll2(".image", [
+        "animate-fade-up",
+        "animate-duration-1500",
+        "animate-delay-100"
+    ]);
     animatedScroll(".line", "spinner-grow", "1.8s", "ease", "0s", "1");
     animatedScroll(".button", "spinner-grow", "1.8s", "ease", "0s", "1");
-    animatedScroll(".image", "spinner-grow", "1.8s", "ease", "0s", "1");
+    // animatedScroll(".image", "spinner-grow", "1.8s", "ease", "0s", "1");
     // 1. Animasi Ornamen Quote
     // Atas
     animatedScroll(".orn-18-quote", "slide-in-up", "2s", "ease", "0s", "1");
@@ -255,27 +260,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Image paths (in a real implementation, these would be your actual image paths)
-    const imagePaths = [
-        './assets/mempelai/m-1.jpeg',
-        './assets/mempelai/m-2.jpeg',
-        './assets/mempelai/m-3.jpeg',
-        './assets/mempelai/m-4.jpeg',
-        './assets/mempelai/m-5.jpeg',
-        './assets/mempelai/m-6.jpeg',
-    ];
-
-    // Elements
-    const lightbox = document.getElementById('photoLightbox');
-    const lightboxImage = document.getElementById('lightboxImage');
-    const closeLightbox = document.getElementById('closeLightbox');
-    const prevSlide = document.getElementById('prevSlide');
-    const nextSlide = document.getElementById('nextSlide');
-    const slideCounter = document.getElementById('slideCounter');
-    const galleryItems = document.querySelectorAll('.galery-photo');
-
-    let currentIndex = 0;
-
     // Book Our Story
     const flipBook = (elBook) => {
         elBook.style.setProperty("--c", 0); // Set current page
@@ -290,50 +274,6 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     
     document.querySelectorAll(".book").forEach(flipBook);
-
-    // Open lightbox when clicking on an image
-    galleryItems.forEach(item => {
-        item.addEventListener('click', function () {
-            currentIndex = parseInt(this.getAttribute('data-index'));
-            openLightbox(currentIndex);
-        });
-    });
-
-    // Close lightbox
-    closeLightbox.addEventListener('click', function () {
-        lightbox.classList.add('hidden');
-        lightbox.style.display = 'none';
-    });
-
-    // Close lightbox when clicking outside the image
-    lightbox.addEventListener('click', function (event) {
-        if (event.target === lightbox) {
-            lightbox.classList.add('hidden');
-        }
-    });
-
-    // Navigate to previous slide
-    prevSlide.addEventListener('click', function () {
-        navigateSlide(-1);
-    });
-
-    // Navigate to next slide
-    nextSlide.addEventListener('click', function () {
-        navigateSlide(1);
-    });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', function (event) {
-        if (lightbox.classList.contains('hidden')) return;
-
-        if (event.key === 'Escape') {
-            lightbox.classList.add('hidden');
-        } else if (event.key === 'ArrowLeft') {
-            navigateSlide(-1);
-        } else if (event.key === 'ArrowRight') {
-            navigateSlide(1);
-        }
-    });
 
     function smoothScrollTo(start, end, duration, callback) {
         let startTime = null;
